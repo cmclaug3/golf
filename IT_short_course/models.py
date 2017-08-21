@@ -44,7 +44,20 @@ class Round(models.Model):
 	def __str__(self):
 		return '{} {}'.format(self.player, self.match)
 
-		
+	@property
+	def to_par(self):
+		total = self.one+self.two+self.three+self.four+self.five+self.six+self.seven+self.eight+self.nine
+		par = 27
+		to_par = total - par
+		if to_par > 0:
+			return '+{}'.format(to_par)
+		elif to_par < 0:
+			return '-{}'.format(to_par)
+		elif to_par == 0:
+			return 'EVEN'
+
+
+
 
 
 	
