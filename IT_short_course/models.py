@@ -44,15 +44,67 @@ class Round(models.Model):
 	def __str__(self):
 		return '{} {}'.format(self.player, self.match)
 
+	def score_list(self):
+		scores = [self.one,self.two,self.three,self.four,self.five,self.six,self.seven,self.eight,self.nine]
+		return scores
+
+	def ace_count(self):
+		scores = self.score_list()
+		count = 0
+		for hole in scores:
+			if hole == 1:
+				count += 1
+		return count		
+
+	def birdie_count(self):
+		scores = self.score_list()
+		count = 0
+		for hole in scores:
+			if hole == 2:
+				count += 1
+		return count
+
+	def par_count(self):
+		scores = self.score_list()
+		count = 0
+		for hole in scores:
+			if hole == 3:
+				count += 1
+		return count
+
+	def bogie_count(self):
+		scores = self.score_list()
+		count = 0
+		for hole in scores:
+			if hole == 4:
+				count += 1
+		return count		
+
+	def double_count(self):
+		scores = self.score_list()
+		count = 0
+		for hole in scores:
+			if hole == 5:
+				count += 1
+		return count
+
+	def trip_and_over_count(self):
+		scores = self.score_list()
+		count = 0
+		for hole in scores:
+			if hole >= 6:
+				count += 1
+		return count
+
 	@property
 	def to_par(self):
 		total = self.one+self.two+self.three+self.four+self.five+self.six+self.seven+self.eight+self.nine
 		par = 27
 		to_par = total - par
 		if to_par > 0:
-			return '+{}'.format(to_par)
+			return '+{}'.format(abs(to_par))
 		elif to_par < 0:
-			return '-{}'.format(to_par)
+			return '-{}'.format(abs(to_par))
 		elif to_par == 0:
 			return 'EVEN'
 
