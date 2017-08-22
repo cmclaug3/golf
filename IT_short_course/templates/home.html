@@ -23,7 +23,7 @@
 
 
 
-<i><h3>Match Count</h3></i>
+<i><h3>Total Matches</h3></i>
 
 {{ all_matches.count }}
 
@@ -31,7 +31,7 @@
 
 
 
-<i><h3>Round Count</h3></i>
+<i><h3>Total Rounds</h3></i>
 
 {{ all_rounds.count }}
 
@@ -41,18 +41,28 @@
 
 <i><h3>Average Round</h3></i>
 
-{{ total_average_score }}
++{{ total_average_score }}
 
 <br><br>
 
 
 
+
+
+
+
+
 <i><h3>Average Hole</h3></i>
-{% for score in all_rounds %}
 
-{{score.average_hole_score}} 
+{{ total_average_hole }}
 
-{% endfor %}
+<br><br>
+
+
+
+<i><h3>Aces</h3></i>
+
+{{ total_aces }}
 
 <br><br>
 
@@ -60,23 +70,16 @@
 
 <i><h3>Birdies</h3></i>
 
-{% for birdie in all_rounds %}
-
-{{birdie.birdie_count}}
-
-{% endfor %}
+{{ total_birdies }}
 
 <br><br>
 
 
 
+
 <i><h3>Pars</h3></i>
 
-{% for par in all_rounds %}
-
-{{par.par_count}}
-
-{% endfor %}
+{{ total_pars }}
 
 <br><br>
 
@@ -84,11 +87,7 @@
 
 <i><h3>Bogies</h3></i>
 
-{% for bogie in all_rounds %}
-
-{{bogie.bogie_count}}
-
-{% endfor %}
+{{ total_bogies }}
 
 <br><br>
 
@@ -96,7 +95,19 @@
 
 <i><h3>Doubles</h3></i>
 
+{{ total_doubles }}
+
+<br><br>
+
+
+
 <i><h3>Trips and above</h3></i>
+
+{{ total_trips_and_above }}
+
+<br><br>
+
+
 
 <i><h3>Hardest Hole</h3></i>
 
