@@ -101,12 +101,13 @@ class Round(models.Model):
 		total = self.one+self.two+self.three+self.four+self.five+self.six+self.seven+self.eight+self.nine
 		par = 27
 		to_par = total - par
-		if to_par > 0:
-			return '+{}'.format(abs(to_par))
-		elif to_par < 0:
-			return '-{}'.format(abs(to_par))
-		elif to_par == 0:
-			return 'EVEN'
+		return to_par
+
+	def average_hole_score(self):
+		average_hole = round(float((sum(self.score_list())) / 9.0), 2)
+		return average_hole
+
+
 
 
 

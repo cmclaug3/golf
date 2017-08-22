@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<h1>Indian Tree - short course</h1>
+<h5>Visualizations and statistics</h5>
+
+
+<hr>
+
+
+<i><h3>Players</h3></i>
+
+{% for player in all_players %}
+
+{{player.name}}
+
+{% endfor %}
+
+<br><br>
+
+
+
+<i><h3>Match Count</h3></i>
+
+{{ all_matches.count }}
+
+<br><br>
+
+
+
+<i><h3>Round Count</h3></i>
+
+{{ all_rounds.count }}
+
+<br><br>
+
+
+
+<i><h3>Average Round</h3></i>
+{% for score in all_rounds %}
+
+{{score.to_par}} 
+
+{% endfor %}
+
+<br><br>
+
+
+
+<i><h3>Average Hole</h3></i>
+{% for score in all_rounds %}
+
+{{score.average_hole_score}} 
+
+{% endfor %}
+
+<br><br>
+
+
+
+<i><h3>Birdies</h3></i>
+
+{% for birdie in all_rounds %}
+
+{{birdie.birdie_count}}
+
+{% endfor %}
+
+<br><br>
+
+
+
+<i><h3>Pars</h3></i>
+
+{% for par in all_rounds %}
+
+{{par.par_count}}
+
+{% endfor %}
+
+<br><br>
+
+
+
+<i><h3>Bogies</h3></i>
+
+{% for bogie in all_rounds %}
+
+{{bogie.bogie_count}}
+
+{% endfor %}
+
+<br><br>
+
+
+
+<i><h3>Doubles</h3></i>
+
+<i><h3>Trips and above</h3></i>
+
+<i><h3>Hardest Hole</h3></i>
+
+<i><h3>Easiest Hole</h3></i>
+
+
+
+
+{% endblock content %}
+
+
+
+
