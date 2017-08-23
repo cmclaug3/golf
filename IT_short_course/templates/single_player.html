@@ -1,48 +1,29 @@
 {% extends 'base.html' %}
 
-{% block title %} Home {% endblock title %}
+{% block title %} {{player_name}} stats {% endblock title %}
+
+
 
 
 {% block content %}
 
 
-<h1>Indian Tree - short course</h1>
-<h5>Visualizations and statistics</h5>
-
+<h1>{{player_name}}</h1>
 
 <hr>
 
 
-<i><h3>Players</h3></i>
+<i><h3>Rounds Played</h3></i>
 
-{% for player in all_players %}
-
- <p><a href="{% url 'single_player' player_id=player.id %}">{{player.name}}</a></p>
-
-{% endfor %}
-
-<br>
-
-
-
-<!-- <i><h3>Total Matches</h3></i>
-
-{{ all_matches.count }}
-
-<br><br> -->
-
-
-
-<i><h3>Total Rounds</h3></i>
-
-{{ all_rounds.count }}
+{{player_rounds_amount}}
 
 <br><br>
 
 
+
 <i><h3>Total Holes</h3></i>
 
-{{ total_holes }}
+{{ round_total }}
 
 <br><br>
 
@@ -50,7 +31,7 @@
 
 <i><h3>Average Round Score</h3></i>
 
-+{{ total_average_score }}
++{{player_average_score}}
 
 <br><br>
 
@@ -58,7 +39,7 @@
 
 <i><h3>Average Hole Score</h3></i>
 
-{{ total_average_hole }}
+{{ player_average_hole }}
 
 <br><br>
 
@@ -66,7 +47,7 @@
 
 <i><h3>Aces</h3></i>
 
-{{ total_aces }}
+{{ player_aces }}
 
 <br><br>
 
@@ -74,16 +55,15 @@
 
 <i><h3>Birdies</h3></i>
 
-{{ total_birdies }}
+{{ player_birdies }}
 
 <br><br>
 
 
 
-
 <i><h3>Pars</h3></i>
 
-{{ total_pars }}
+{{ player_pars }}
 
 <br><br>
 
@@ -91,7 +71,7 @@
 
 <i><h3>Bogies</h3></i>
 
-{{ total_bogies }}
+{{ player_bogies }}
 
 <br><br>
 
@@ -99,7 +79,7 @@
 
 <i><h3>Doubles</h3></i>
 
-{{ total_doubles }}
+{{ player_doubles }}
 
 <br><br>
 
@@ -107,11 +87,9 @@
 
 <i><h3>Trips and above</h3></i>
 
-{{ total_trips_and_above }}
+{{ player_trips_and_above }}
 
 <br><br>
-
-
 
 
 <i><h3>Hole by hole average</h3></i>
@@ -132,7 +110,3 @@
 
 
 {% endblock content %}
-
-
-
-
