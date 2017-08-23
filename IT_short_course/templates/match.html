@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} {{match.id}} {% endblock title %}
+
+
+{% block content %}
+
+{% for round in match %}
+
+{{round.to_par}}
+
+{% endfor %}
+
+<hr>
+
+
+{% endblock content %}

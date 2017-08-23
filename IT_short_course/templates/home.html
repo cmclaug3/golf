@@ -17,7 +17,8 @@
 
 {% for player in all_players %}
 
- <p><a href="{% url 'single_player' player_id=player.id %}">{{player.name}}</a></p>
+ <a href="{% url 'single_player' player_id=player.id %}">{{player.name}}</a>
+ 
 
 {% endfor %}
 

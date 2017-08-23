@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} All Player Stats {% endblock title %}
+
+
+
+{% block content %}
+
+
+<h1>Total Statistics</h1>
+
+<hr>
+
+
+<table border="1">
+	<tr>
+		<td></td>
+		<th><h2>{{corey.name}}</h2></th>
+		<th><h2>{{tyler.name}}</h2></th>
+	</tr>
+	<tr>
+		<th>Average Score</th>
+		<td>+{{corey_average_score}}</td>
+		<td>+{{tyler_average_score}}</td>
+	</tr>
+	<tr>
+		<th>Average Hole</th>
+		<td>{{corey_average_hole}}</td>
+		<td>{{tyler_average_hole}}</td>
+	</tr>
+	<tr>
+		<th>Aces</th>
+		<td></td>
+		<td></td>
+	</tr>
+
+</table>
+
+{% endblock content %}
