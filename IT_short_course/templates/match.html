@@ -17,25 +17,124 @@
 
 {{ real_match.condition }}
 
-<br><hr>
+<br><hr><br>
 
 
-{% for round in match %}
+{% for round in rounds_in_match %}
 
 
 {% if forloop.first %}
 
-COREY +{{round.to_par}} <br><br>
+<h2>COREY +{{round.to_par}}</h2>
+<!-- {{round.score_list}} -->
 
 {% else %}
 
-TYLER +{{round.to_par}}
+<h2>TYLER +{{round.to_par}}</h2>
 
 {% endif %}
 
 {% endfor %}
 
+<br>
+
+
+<table border="1">
+	<tr>
+		<th>Player</th>
+		<th>One</th>
+		<th>Two</th>
+		<th>Three</th>
+		<th>Four</th>
+		<th>Five</th>
+		<th>Six</th>
+		<th>Seven</th>
+		<th>Eight</th>
+		<th>Nine</th>
+		<th>Total</th>
+	</tr>
+	<tr>
+		<th>Corey</th>
+
+		{% for round in rounds_in_match %}
+		{% if forloop.first %}
+
+		<td>{{round.one}}</td>
+		<td>{{round.two}}</td>
+		<td>{{round.three}}</td>
+		<td>{{round.four}}</td>
+		<td>{{round.five}}</td>
+		<td>{{round.six}}</td>
+		<td>{{round.seven}}</td>
+		<td>{{round.eight}}</td>
+		<td>{{round.nine}}</td>
+		<td>{{round.total_score}}</td>
+	</tr>
+
+	{% else %}
+	<tr>
+		<th>Tyler</th>
+		<td>{{round.one}}</td>
+		<td>{{round.two}}</td>
+		<td>{{round.three}}</td>
+		<td>{{round.four}}</td>
+		<td>{{round.five}}</td>
+		<td>{{round.six}}</td>
+		<td>{{round.seven}}</td>
+		<td>{{round.eight}}</td>
+		<td>{{round.nine}}</td>
+		<td>{{round.total_score}}</td>
+	</tr>
+
+	{% endif %}
+	{% endfor %}
+
+</table>
+
+
 <hr>
+
+
+<table border="1">
+	<tr>
+		<th>Player</th>
+		<th>Aces</th>
+		<th>Birdies</th>
+		<th>Pars</th>
+		<th>Bogies</th>
+		<th>Doubles</th>
+		<th>Trips (>=)</th>
+	</tr>
+
+		{% for round in rounds_in_match %}
+		{% if forloop.first %}
+
+	<tr>
+		<th>Corey</th>
+		<td>{{round.ace_count}}</td>
+		<td>{{round.birdie_count}}</td>
+		<td>{{round.par_count}}</td>
+		<td>{{round.bogie_count}}</td>
+		<td>{{round.double_count}}</td>
+		<td>{{round.trip_and_over_count}}</td>
+	</tr>
+
+	{% else %}
+
+	<tr>
+		<th>Tyler</th>
+		<td>{{round.ace_count}}</td>
+		<td>{{round.birdie_count}}</td>
+		<td>{{round.par_count}}</td>
+		<td>{{round.bogie_count}}</td>
+		<td>{{round.double_count}}</td>
+		<td>{{round.trip_and_over_count}}</td>
+	</tr>
+
+	{% endif %}
+	{% endfor %}
+
+</table>
 
 
 {% endblock content %}

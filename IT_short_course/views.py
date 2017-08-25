@@ -293,12 +293,13 @@ def matches(request):
 
 def match(request, match_id):
 
-	match = Round.objects.filter(match=match_id)
+	rounds_in_match = Round.objects.filter(match=match_id)
 	real_match = Match.objects.get(id=match_id)
 
+
 	context = {
-		'match': match,
-		'real_match': real_match
+		'rounds_in_match': rounds_in_match,
+		'real_match': real_match,
 	}
 	return render(request, 'match.html', context)
 
