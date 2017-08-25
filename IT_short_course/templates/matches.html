@@ -5,14 +5,14 @@
 
 {% block content %}
 
-<h1>Matches</h1>
+<h1>Matches - Indian Tree short course</h1>
 
 <hr>
 
 {% for match in matches %}
 
 <a href="{% url 'match' match_id=match.id %}">{{match.date}}</a>
-<br>
+<br><br>
 
 {% endfor %}
 

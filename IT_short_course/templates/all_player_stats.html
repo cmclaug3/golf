@@ -7,31 +7,119 @@
 {% block content %}
 
 
-<h1>Total Statistics</h1>
+<h1>Total Statistics - Indian Tree short course</h1>
 
 <hr>
 
 
 <table border="1">
+<caption>All Stats</caption>
 	<tr>
 		<td></td>
 		<th><h2>{{corey.name}}</h2></th>
 		<th><h2>{{tyler.name}}</h2></th>
 	</tr>
 	<tr>
-		<th>Average Score</th>
+		<th>Total holes</th>
+		<td>{{corey_holes}}</td>
+		<td>{{tyler_holes}}</td>
+	</tr>
+	<tr>
+		<th>Avg Score</th>
 		<td>+{{corey_average_score}}</td>
 		<td>+{{tyler_average_score}}</td>
 	</tr>
 	<tr>
-		<th>Average Hole</th>
+		<th>Avg Hole</th>
 		<td>{{corey_average_hole}}</td>
 		<td>{{tyler_average_hole}}</td>
 	</tr>
 	<tr>
 		<th>Aces</th>
+		<td>{{corey_aces}}</td>
+		<td>{{tyler_aces}}</td>
+	</tr>
+	<tr>
+		<th>Birdies</th>
+		<td>{{corey_birdies}}</td>
+		<td>{{tyler_birdies}}</td>
+	</tr>
+	<tr>
+		<th>Pars</th>
+		<td>{{corey_pars}}</td>
+		<td>{{tyler_pars}}</td>
+	</tr>
+	</tr>
+		<th>Bogies</th>
+		<td>{{corey_bogies}}</td>
+		<td>{{tyler_bogies}}</td>
+	</tr>
+	</tr>
+		<th>Doubles</th>
+		<td>{{corey_doubles}}</td>
+		<td>{{tyler_doubles}}</td>
+	</tr>
+	<tr>
+		<th>Trips (=>)</th>
+		<td>{{corey_trips_and_above}}</td>
+		<td>{{tyler_trips_and_above}}</td>
+	</tr>
+
+</table>
+
+<br>
+
+<table border="1">
+<caption>Hole by hole</caption>
+	<tr>
 		<td></td>
-		<td></td>
+		<th><h2>{{corey.name}}</h2></th>
+		<th><h2>{{tyler.name}}</h2></th>
+	</tr>
+	<tr>
+		<th>One</th>
+		<td>{{corey_one_avg}}</td>
+		<td>{{tyler_one_avg}}</td>
+	</tr>
+	<tr>
+		<th>Two</th>
+		<td>{{corey_two_avg}}</td>
+		<td>{{tyler_two_avg}}</td>
+	</tr>
+	<tr>
+		<th>Three</th>
+		<td>{{corey_three_avg}}</td>
+		<td>{{tyler_three_avg}}</td>
+	</tr>
+	<tr>
+		<th>Four</th>
+		<td>{{corey_four_avg}}</td>
+		<td>{{tyler_four_avg}}</td>
+	</tr>
+	<tr>
+		<th>Five</th>
+		<td>{{corey_five_avg}}</td>
+		<td>{{tyler_five_avg}}</td>
+	</tr>
+	</tr>
+		<th>Six</th>
+		<td>{{corey_six_avg}}</td>
+		<td>{{tyler_six_avg}}</td>
+	</tr>
+	</tr>
+		<th>Seven</th>
+		<td>{{corey_seven_avg}}</td>
+		<td>{{tyler_seven_avg}}</td>
+	</tr>
+	<tr>
+		<th>Eight</th>
+		<td>{{corey_eight_avg}}</td>
+		<td>{{tyler_eight_avg}}</td>
+	</tr>
+	<tr>
+		<th>Nine</th>
+		<td>{{corey_nine_avg}}</td>
+		<td>{{tyler_nine_avg}}</td>
 	</tr>
 
 </table>

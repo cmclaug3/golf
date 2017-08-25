@@ -5,9 +5,33 @@
 
 {% block content %}
 
+<i><h3>Date</h3></i>
+
+{{ real_match.date }}
+
+<i><h3>Time</h3></i>
+
+{{ real_match.time }}
+
+<i><h3>Condition</h3></i>
+
+{{ real_match.condition }}
+
+<br><hr>
+
+
 {% for round in match %}
 
-{{round.to_par}}
+
+{% if forloop.first %}
+
+COREY +{{round.to_par}} <br><br>
+
+{% else %}
+
+TYLER +{{round.to_par}}
+
+{% endif %}
 
 {% endfor %}
 

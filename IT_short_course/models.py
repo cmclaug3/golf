@@ -48,6 +48,9 @@ class Round(models.Model):
 		scores = [self.one,self.two,self.three,self.four,self.five,self.six,self.seven,self.eight,self.nine]
 		return scores
 
+	def total_score(self):
+		return sum(self.score_list())
+
 	def ace_count(self):
 		scores = self.score_list()
 		count = 0
@@ -106,6 +109,8 @@ class Round(models.Model):
 	def average_hole_score(self):
 		average_hole = round(float((sum(self.score_list())) / 9.0), 2)
 		return average_hole
+
+
 
 
 
