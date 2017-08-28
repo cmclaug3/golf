@@ -114,7 +114,6 @@ def home(request):
 	# hardest to easiest holes
 
 
-
 	context = {
 		'all_rounds': all_rounds,
 		'all_players': Player.objects.all(),
@@ -249,8 +248,6 @@ def single_player(request, player_id):
 	# player match record
 
 
-	
-
 	context = {
 		'player_name': player.name,
 		'player_rounds_amount': len(player_rounds),
@@ -280,10 +277,7 @@ def single_player(request, player_id):
 
 
 def matches(request):
-
 	matches = Match.objects.all()
-
-
 	context = {
 		'matches': matches
 	}
@@ -292,16 +286,443 @@ def matches(request):
 
 
 def match(request, match_id):
-
 	rounds_in_match = Round.objects.filter(match=match_id)
 	real_match = Match.objects.get(id=match_id)
-
-
 	context = {
 		'rounds_in_match': rounds_in_match,
 		'real_match': real_match,
 	}
 	return render(request, 'match.html', context)
+
+
+
+def holes(request):
+
+	all_rounds = Round.objects.all()
+	corey_rounds = Player.objects.get(name='Corey').round_set.all()
+	tyler_rounds = Player.objects.get(name='Tyler').round_set.all()
+
+	cm_ones = []
+	cm_twos = []
+	cm_threes = []
+	cm_fours = []
+	cm_fives = []
+	cm_sixes = []
+	cm_sevens = []
+	cm_eights = []
+	cm_nines = []
+
+	td_ones = []
+	td_twos = []
+	td_threes = []
+	td_fours = []
+	td_fives = []
+	td_sixes = []
+	td_sevens = []
+	td_eights = []
+	td_nines = []
+
+	for one in corey_rounds:
+		cm_ones.append(one.one)
+	for one1 in tyler_rounds:
+		td_ones.append(one1.one)
+	for two in corey_rounds:
+		cm_twos.append(two.two)
+	for two1 in tyler_rounds:
+		td_twos.append(two1.two)
+	for three in corey_rounds:
+		cm_threes.append(three.three)
+	for three1 in tyler_rounds:
+		td_threes.append(three1.three)
+	for four in corey_rounds:
+		cm_fours.append(four.four)
+	for four1 in tyler_rounds:
+		td_fours.append(four1.four)
+	for five in corey_rounds:
+		cm_fives.append(five.five)
+	for five1 in tyler_rounds:
+		td_fives.append(five1.five)
+	for six in corey_rounds:
+		cm_sixes.append(six.six)
+	for six1 in tyler_rounds:
+		td_sixes.append(six1.six)
+	for seven in corey_rounds:
+		cm_sevens.append(seven.seven)
+	for seven1 in tyler_rounds:
+		td_sevens.append(seven1.seven)
+	for eight in corey_rounds:
+		cm_eights.append(eight.eight)
+	for eight1 in tyler_rounds:
+		td_eights.append(eight1.eight)
+	for nine in corey_rounds:
+		cm_nines.append(nine.nine)
+	for nine1 in tyler_rounds:
+		td_nines.append(nine1.nine)
+
+# FIRST
+	cm_one_aces = []
+	cm_one_birdies = []
+	cm_one_pars = []
+	cm_one_bogies = []
+	cm_one_doubles = []
+	cm_one_trips = []
+
+	for a in cm_ones:
+		if a == 1:
+			cm_one_aces.append(a)
+		elif a == 2:
+			cm_one_birdies.append(a)
+		elif a == 3:
+			cm_one_pars.append(a)
+		elif a == 4:
+			cm_one_bogies.append(a)
+		elif a == 5:
+			cm_one_doubles.append(a)
+		elif a >= 6:
+			cm_one_trips.append(a)
+
+	td_one_aces = []
+	td_one_birdies = []
+	td_one_pars = []
+	td_one_bogies = []
+	td_one_doubles = []
+	td_one_trips = []
+
+	for b in td_ones:
+		if b == 1:
+			td_one_aces.append(b)
+		elif b == 2:
+			td_one_birdies.append(b)
+		elif b == 3:
+			td_one_pars.append(b)
+		elif b == 4:
+			td_one_bogies.append(b)
+		elif b == 5:
+			td_one_doubles.append(b)
+		elif b >= 6:
+			td_one_trips.append(b)
+
+# SECOND
+	cm_two_aces = []
+	cm_two_birdies = []
+	cm_two_pars = []
+	cm_two_bogies = []
+	cm_two_doubles = []
+	cm_two_trips = []
+
+	for c in cm_twos:
+		if c == 1:
+			cm_two_aces.append(c)
+		elif c == 2:
+			cm_two_birdies.append(c)
+		elif c == 3:
+			cm_two_pars.append(c)
+		elif c == 4:
+			cm_two_bogies.append(c)
+		elif c == 5:
+			cm_two_doubles.append(c)
+		elif c >= 6:
+			cm_two_trips.append(c)
+
+	td_two_aces = []
+	td_two_birdies = []
+	td_two_pars = []
+	td_two_bogies = []
+	td_two_doubles = []
+	td_two_trips = []
+
+	for d in td_twos:
+		if d == 1:
+			td_two_aces.append(d)
+		elif d == 2:
+			td_two_birdies.append(d)
+		elif d == 3:
+			td_two_pars.append(d)
+		elif d == 4:
+			td_two_bogies.append(d)
+		elif d == 5:
+			td_two_doubles.append(d)
+		elif d >= 6:
+			td_two_trips.append(d)
+
+# THIRD
+	cm_three_aces = []
+	cm_three_birdies = []
+	cm_three_pars = []
+	cm_three_bogies = []
+	cm_three_doubles = []
+	cm_three_trips = []
+
+	for e in cm_threes:
+		if e == 1:
+			cm_three_aces.append(e)
+		elif e == 2:
+			cm_three_birdies.append(e)
+		elif e == 3:
+			cm_three_pars.append(e)
+		elif e == 4:
+			cm_three_bogies.append(e)
+		elif e == 5:
+			cm_three_doubles.append(e)
+		elif e >= 6:
+			cm_three_trips.append(e)
+
+	td_three_aces = []
+	td_three_birdies = []
+	td_three_pars = []
+	td_three_bogies = []
+	td_three_doubles = []
+	td_three_trips = []
+
+	for f in td_threes:
+		if f == 1:
+			td_three_aces.append(f)
+		elif f == 2:
+			td_three_birdies.append(f)
+		elif f == 3:
+			td_three_pars.append(f)
+		elif f == 4:
+			td_three_bogies.append(f)
+		elif f == 5:
+			td_three_doubles.append(f)
+		elif f >= 6:
+			td_three_trips.append(f)
+
+# FOURTH
+	cm_four_aces = []
+	cm_four_birdies = []
+	cm_four_pars = []
+	cm_four_bogies = []
+	cm_four_doubles = []
+	cm_four_trips = []
+
+	for g in cm_fours:
+		if g == 1:
+			cm_four_aces.append(g)
+		elif g == 2:
+			cm_four_birdies.append(g)
+		elif g == 3:
+			cm_four_pars.append(g)
+		elif g == 4:
+			cm_four_bogies.append(g)
+		elif g == 5:
+			cm_four_doubles.append(g)
+		elif g >= 6:
+			cm_four_trips.append(g)
+
+	td_four_aces = []
+	td_four_birdies = []
+	td_four_pars = []
+	td_four_bogies = []
+	td_four_doubles = []
+	td_four_trips = []
+
+	for h in td_fours:
+		if h == 1:
+			td_four_aces.append(h)
+		elif h == 2:
+			td_four_birdies.append(h)
+		elif h == 3:
+			td_four_pars.append(h)
+		elif h == 4:
+			td_four_bogies.append(h)
+		elif h == 5:
+			td_four_doubles.append(h)
+		elif h >= 6:
+			td_four_trips.append(h)
+
+# FIFTH
+	cm_five_aces = []
+	cm_five_birdies = []
+	cm_five_pars = []
+	cm_five_bogies = []
+	cm_five_doubles = []
+	cm_five_trips = []
+
+	for i in cm_fives:
+		if i == 1:
+			cm_five_aces.append(i)
+		elif i == 2:
+			cm_five_birdies.append(i)
+		elif i == 3:
+			cm_five_pars.append(i)
+		elif i == 4:
+			cm_five_bogies.append(i)
+		elif i == 5:
+			cm_five_doubles.append(i)
+		elif i >= 6:
+			cm_five_trips.append(i)
+
+	td_five_aces = []
+	td_five_birdies = []
+	td_five_pars = []
+	td_five_bogies = []
+	td_five_doubles = []
+	td_five_trips = []
+
+	for j in td_fives:
+		if j == 1:
+			td_five_aces.append(j)
+		elif j == 2:
+			td_five_birdies.append(j)
+		elif j == 3:
+			td_five_pars.append(j)
+		elif j == 4:
+			td_five_bogies.append(j)
+		elif j == 5:
+			td_five_doubles.append(j)
+		elif j >= 6:
+			td_five_trips.append(j)
+
+# SIXTH
+	cm_six_aces = []
+	cm_six_birdies = []
+	cm_six_pars = []
+	cm_six_bogies = []
+	cm_six_doubles = []
+	cm_six_trips = []
+
+	for k in cm_sixes:
+		if k == 1:
+			cm_six_aces.append(k)
+		elif k == 2:
+			cm_six_birdies.append(k)
+		elif k == 3:
+			cm_six_pars.append(k)
+		elif k == 4:
+			cm_six_bogies.append(k)
+		elif k == 5:
+			cm_six_doubles.append(k)
+		elif k >= 6:
+			cm_six_trips.append(k)
+
+	td_six_aces = []
+	td_six_birdies = []
+	td_six_pars = []
+	td_six_bogies = []
+	td_six_doubles = []
+	td_six_trips = []
+
+	for l in td_sixes:
+		if l == 1:
+			td_six_aces.append(l)
+		elif l == 2:
+			td_six_birdies.append(l)
+		elif l == 3:
+			td_six_pars.append(l)
+		elif l == 4:
+			td_six_bogies.append(l)
+		elif l == 5:
+			td_six_doubles.append(l)
+		elif l >= 6:
+			td_six_trips.append(l)
+
+
+
+	context = {
+		'all_rounds': all_rounds,
+# first
+		'cm_one_aces': len(cm_one_aces),
+		'cm_one_birdies': len(cm_one_birdies),
+		'cm_one_pars': len(cm_one_pars),
+		'cm_one_bogies': len(cm_one_bogies),
+		'cm_one_doubles': len(cm_one_doubles),
+		'cm_one_trips': len(cm_one_trips),
+
+		'td_one_aces': len(td_one_aces),
+		'td_one_birdies': len(td_one_birdies),
+		'td_one_pars': len(td_one_pars),
+		'td_one_bogies': len(td_one_bogies),
+		'td_one_doubles': len(td_one_doubles),
+		'td_one_trips': len(td_one_trips),
+# second
+		'cm_two_aces': len(cm_two_aces),
+		'cm_two_birdies': len(cm_two_birdies),
+		'cm_two_pars': len(cm_two_pars),
+		'cm_two_bogies': len(cm_two_bogies),
+		'cm_two_doubles': len(cm_two_doubles),
+		'cm_two_trips': len(cm_two_trips),
+
+		'td_two_aces': len(td_two_aces),
+		'td_two_birdies': len(td_two_birdies),
+		'td_two_pars': len(td_two_pars),
+		'td_two_bogies': len(td_two_bogies),
+		'td_two_doubles': len(td_two_doubles),
+		'td_two_trips': len(td_two_trips),
+# third
+		'cm_three_aces': len(cm_three_aces),
+		'cm_three_birdies': len(cm_three_birdies),
+		'cm_three_pars': len(cm_three_pars),
+		'cm_three_bogies': len(cm_three_bogies),
+		'cm_three_doubles': len(cm_three_doubles),
+		'cm_three_trips': len(cm_three_trips),
+
+		'td_three_aces': len(td_three_aces),
+		'td_three_birdies': len(td_three_birdies),
+		'td_three_pars': len(td_three_pars),
+		'td_three_bogies': len(td_three_bogies),
+		'td_three_doubles': len(td_three_doubles),
+		'td_three_trips': len(td_three_trips),
+# fourth
+		'cm_four_aces': len(cm_four_aces),
+		'cm_four_birdies': len(cm_four_birdies),
+		'cm_four_pars': len(cm_four_pars),
+		'cm_four_bogies': len(cm_four_bogies),
+		'cm_four_doubles': len(cm_four_doubles),
+		'cm_four_trips': len(cm_four_trips),
+
+		'td_four_aces': len(td_four_aces),
+		'td_four_birdies': len(td_four_birdies),
+		'td_four_pars': len(td_four_pars),
+		'td_four_bogies': len(td_four_bogies),
+		'td_four_doubles': len(td_four_doubles),
+		'td_four_trips': len(td_four_trips),
+
+# fifth
+		'cm_five_aces': len(cm_five_aces),
+		'cm_five_birdies': len(cm_five_birdies),
+		'cm_five_pars': len(cm_five_pars),
+		'cm_five_bogies': len(cm_five_bogies),
+		'cm_five_doubles': len(cm_five_doubles),
+		'cm_five_trips': len(cm_five_trips),
+
+		'td_five_aces': len(td_five_aces),
+		'td_five_birdies': len(td_five_birdies),
+		'td_five_pars': len(td_five_pars),
+		'td_five_bogies': len(td_five_bogies),
+		'td_five_doubles': len(td_five_doubles),
+		'td_five_trips': len(td_five_trips),
+
+# sixth
+		'cm_six_aces': len(cm_six_aces),
+		'cm_six_birdies': len(cm_six_birdies),
+		'cm_six_pars': len(cm_six_pars),
+		'cm_six_bogies': len(cm_six_bogies),
+		'cm_six_doubles': len(cm_six_doubles),
+		'cm_six_trips': len(cm_six_trips),
+
+		'td_six_aces': len(td_six_aces),
+		'td_six_birdies': len(td_six_birdies),
+		'td_six_pars': len(td_six_pars),
+		'td_six_bogies': len(td_six_bogies),
+		'td_six_doubles': len(td_six_doubles),
+		'td_six_trips': len(td_six_trips),
+
+		# this cannot be the way to do it...
+
+
+	}
+	return render(request, 'holes.html', context)
+
+
+# def hole(request, hole_id):
+
+	
+
+# 	context = {
+# 		'hole': hole
+# 	}
+# 	return render(request, 'hole.html', context)
 
 
 
@@ -355,6 +776,7 @@ def all_player_stats(request):
 	tyler_aces = sum(spaces)
 
 	# corey birdies 
+
 	birdies = []
 	player_rounds = corey_rounds
 	for birdie in player_rounds:

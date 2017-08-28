@@ -23,3 +23,7 @@
 # Individual Hole View
 	
 # 	player/total stats for each hole 
+
+
+
+# master_ratio = concept of calculating an average round in terms on aces, birdies, pars, etc...
