@@ -6,8 +6,8 @@
 {% block content %}
 
 
-<h1>Indian Tree | short course</h1>
-<h5>Visualizations and statistics</h5>
+<h1>Golf Tracker</h1>
+<h5>Par 3 Edition</h5>
 
 
 <hr>
@@ -41,6 +41,19 @@
 <br><br>
 
 
+
+<i><h3>Courses (rounds)</h3></i>
+
+{% for course in courses %}
+
+{{course.name}}: {{course.round_set.count}} <br>
+
+{% endfor %}
+
+<br>
+
+
+
 <i><h3>Total Holes</h3></i>
 
 {{ total_holes }}
@@ -49,7 +62,7 @@
 
 
 
-<i><h3>Average Round Score</h3></i>
+<i><h3>Average Round Score (9 holes)</h3></i>
 
 +{{ total_average_score }}
 

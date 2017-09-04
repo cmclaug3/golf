@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 
-from IT_short_course.models import Round, Player, Match
+from IT_short_course.models import Round, Player, Match, Course
+from django.db.models import Avg, Sum
 
 
 def home(request):
@@ -118,6 +119,7 @@ def home(request):
 		'all_rounds': all_rounds,
 		'all_players': Player.objects.all(),
 		'all_matches': Match.objects.all(),
+		'courses': Course.objects.all(),
 		'total_average_score': total_average_score,
 		'total_average_hole': total_average_hole,
 		'total_aces': total_aces,
@@ -288,9 +290,11 @@ def matches(request):
 def match(request, match_id):
 	rounds_in_match = Round.objects.filter(match=match_id)
 	real_match = Match.objects.get(id=match_id)
+	course = rounds_in_match[0].course.name
 	context = {
 		'rounds_in_match': rounds_in_match,
 		'real_match': real_match,
+		'course': course
 	}
 	return render(request, 'match.html', context)
 
@@ -299,8 +303,11 @@ def match(request, match_id):
 def holes(request):
 
 	all_rounds = Round.objects.all()
-	corey_rounds = Player.objects.get(name='Corey').round_set.all()
-	tyler_rounds = Player.objects.get(name='Tyler').round_set.all()
+	corey_rounds = Player.objects.get(name='Corey').round_set.filter(course__name='Indian Tree')
+	tyler_rounds = Player.objects.get(name='Tyler').round_set.filter(course__name='Indian Tree')
+
+
+
 
 	cm_ones = []
 	cm_twos = []
@@ -621,6 +628,8 @@ def holes(request):
 
 	context = {
 		'all_rounds': all_rounds,
+		'corey_rounds': corey_rounds,
+		'tyler_rounds': tyler_rounds,
 # first
 		'cm_one_aces': len(cm_one_aces),
 		'cm_one_birdies': len(cm_one_birdies),
@@ -853,6 +862,9 @@ def all_player_stats(request):
 # I feel like I am repeating myself way too much! Not the DRY way to go!!
 # I feel like I am repeating myself way too much! Not the DRY way to go!!
 
+
+
+
 # COREY
 
 	first = []
@@ -865,7 +877,7 @@ def all_player_stats(request):
 	eighth = []
 	ninth = []
 
-	player_rounds = corey_rounds
+	player_rounds = corey_rounds.filter(course__name='Indian Tree')
 
 	for one_score in player_rounds:
 		first.append(one_score.one)
@@ -915,7 +927,7 @@ def all_player_stats(request):
 	eighth = []
 	ninth = []
 
-	player_rounds = tyler_rounds
+	player_rounds = tyler_rounds.filter(course__name='Indian Tree')
 
 	for one_score in player_rounds:
 		first.append(one_score.one)
@@ -955,11 +967,15 @@ def all_player_stats(request):
 
 	# total holes
 
-	corey_rounds = Player.objects.get(name='Corey').round_set.all()
-	tyler_rounds = Player.objects.get(name='Tyler').round_set.all()
-
 	corey_holes = len(corey_rounds) * 9
 	tyler_holes = len(tyler_rounds) * 9
+
+	# corey_rounds.filter(course__name='Hyland Hills South')
+	# hhs = Course.objects.get(name='Hyland Hills South')
+
+	# figure = Round.objects.filter(course__name='Hyland Hills South')
+	# one = figure.annotate(mean_one=Avg('one'))
+
 
 
 
@@ -1006,9 +1022,12 @@ def all_player_stats(request):
 		'tyler_seven_avg': round(tyler_seven_avg, 3),
 		'tyler_eight_avg': round(tyler_eight_avg, 3),
 		'tyler_nine_avg': round(tyler_nine_avg, 3),
+
 		# total holes
 		'corey_holes': corey_holes,
-		'tyler_holes': tyler_holes
+		'tyler_holes': tyler_holes,
+
+		# 'one': one,
 
 
 

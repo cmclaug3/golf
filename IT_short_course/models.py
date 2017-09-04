@@ -19,6 +19,13 @@ class Player(models.Model):
 		return self.name
 
 
+class Course(models.Model):
+	name = models.CharField(max_length=50)
+
+	def __str__(self):
+		return self.name
+
+
 class Match(models.Model):
 	date = models.DateField()
 	time = models.TimeField()
@@ -30,7 +37,8 @@ class Match(models.Model):
 
 class Round(models.Model):
 	player = models.ForeignKey(Player)
-	match = models.ForeignKey(Match)
+	match = models.ForeignKey(Match, null=True, blank=True)
+	course = models.ForeignKey(Course, default="Indian Tree")
 	one = models.IntegerField()
 	two = models.IntegerField()
 	three = models.IntegerField()

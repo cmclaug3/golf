@@ -5,9 +5,11 @@
 
 {% block content %}
 
-<h1>Holes - Indian Tree short course</h1>
+<h1>Holes</h1>
 
 <hr>
+
+<h2> {% for course in corey_rounds|slice:":1" %} {{course.course.name}} {% endfor %} </h2>
 
 
 <i><h3>One</h3></i>
