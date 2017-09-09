@@ -43,7 +43,8 @@
 <br>
 
 
-<table border="1">
+<table class="table table-striped">
+<thead>
 	<tr>
 		<th>Player</th>
 		<th>One</th>
@@ -57,6 +58,8 @@
 		<th>Nine</th>
 		<th>Total</th>
 	</tr>
+	</thead>
+	<tbody>
 	<tr>
 		<th>Corey</th>
 
@@ -90,8 +93,11 @@
 		<td>{{round.total_score}}</td>
 	</tr>
 
+
 	{% endif %}
+
 	{% endfor %}
+	</tbody>
 
 </table>
 
@@ -99,7 +105,7 @@
 <br><br>
 
 
-<table border="1">
+<table class="table table-striped">
 	<tr>
 		<th>Player</th>
 		<th>Aces</th>

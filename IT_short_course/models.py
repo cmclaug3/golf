@@ -120,6 +120,30 @@ class Round(models.Model):
 
 
 
+	def par_ratio(self, *rounds):
+		holes_par_or_better = []
+		for hole_list in rounds:
+		    for hole in hold_list:
+		        if hole <= 3:
+		            holes_par_or_better.append(hole)
+		pars_or_better_ratio = len(holes_par_or_better) / (len(rounds)*9)
+		return pars_or_better_ratio
+
+
+
+
+
+	# def par_ratio(self, list_of_score_lists)
+	# 	new = [i.score_list() for i in list_of_score_lists]
+	# 	holes_par_or_better = []
+	# 	for x in new:
+	# 	    for y in x:
+	# 	        if y <= 3:
+	# 	            holes_par_or_better.append(y)
+	# 	pars_ratio = len(holes_par_or_better) / (len(corey_rounds)*9)
+
+
+
 
 
 

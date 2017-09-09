@@ -6,7 +6,15 @@ from django.core.urlresolvers import reverse
 
 from IT_short_course.models import Round, Player, Match, Course
 from django.db.models import Avg, Sum
+import statistics as stat
 
+
+def build_totals(all_rounds, method_name):
+	holder = []
+	for rounda in all_rounds:
+		my_method = getattr(rounda, method_name)
+		holder.append(my_method())
+	return sum(holder)
 
 def home(request):
 
@@ -19,47 +27,18 @@ def home(request):
 
 	# total average hole
 	holding = []
-	all_rounds = Round.objects.all()
+	all_rounds = Round.objects.all() #******************
 	for avg_hole in all_rounds:
 		holding.append(avg_hole.average_hole_score())
 	total_average_hole = round((sum(holding)) / float(all_rounds.count()), 3)
 
-	# total aces 
-	aces = []
-	for ace in all_rounds:
-		aces.append(ace.ace_count())
-	total_aces = sum(aces)
-
-	# total birdies 
-	birdies = []
-	for birdie in all_rounds:
-		birdies.append(birdie.birdie_count())
-	total_birdies = sum(birdies)
-
-	# total pars 
-	pars = []
-	for par in all_rounds:
-		pars.append(par.par_count())
-	total_pars = sum(pars)
-
-	# total bogies 
-	bogies = []
-	for bogie in all_rounds:
-		bogies.append(bogie.bogie_count())
-	total_bogies = sum(bogies)
-
-	# total doubles 
-	doubles = []
-	for double in all_rounds:
-		doubles.append(double.double_count())
-	total_doubles = sum(doubles)
-
-	# total trips and over 
-	trips = []
-	for trip in all_rounds:
-		trips.append(trip.trip_and_over_count())
-	total_trips_and_above = sum(trips)
-
+	# hole counts
+	total_aces = build_totals(all_rounds, 'ace_count')
+	total_birdies = build_totals(all_rounds, 'birdie_count')
+	total_pars = build_totals(all_rounds, 'par_count')
+	total_bogies = build_totals(all_rounds, 'bogie_count')
+	total_doubles = build_totals(all_rounds, 'double_count')
+	total_trips_and_above = build_totals(all_rounds, 'trip_and_over_count')
 
 	# average score by hole
 	first = []
@@ -72,48 +51,25 @@ def home(request):
 	eighth = []
 	ninth = []
 
-	for one_score in all_rounds:
-		first.append(one_score.one)
-	one_avg = sum(first) / float(len(first))
-
-	for two_score in all_rounds:
-		second.append(two_score.two)
-	two_avg = sum(second) / float(len(second))
-
-	for three_score in all_rounds:
-		third.append(three_score.three)
-	three_avg = sum(third) / float(len(third))
-
-	for four_score in all_rounds:
-		fourth.append(four_score.four)
-	four_avg = sum(fourth) / float(len(fourth))
-
-	for five_score in all_rounds:
-		fifth.append(five_score.five)
-	five_avg = sum(fifth) / float(len(fifth))
-
-	for six_score in all_rounds:
-		sixth.append(six_score.six)
-	six_avg = sum(sixth) / float(len(sixth))
-
-	for seven_score in all_rounds:
-		seventh.append(seven_score.seven)
-	seven_avg = sum(seventh) / float(len(seventh))
-
-	for eight_score in all_rounds:
-		eighth.append(eight_score.eight)
-	eight_avg = sum(eighth) / float(len(eighth))
-
-	for nine_score in all_rounds:
-		ninth.append(nine_score.nine)
-	nine_avg = sum(ninth) / float(len(ninth))
-
-
-	# total holes
-	total_holes = len(all_rounds) * 9
-
-	# hardest to easiest holes
-
+	for hole in all_rounds:
+		if hole.one:
+			first.append(hole.one)
+		if hole.two:
+			second.append(hole.two)
+		if hole.three:
+			third.append(hole.three)
+		if hole.four:
+			fourth.append(hole.four)
+		if hole.five:
+			fifth.append(hole.five)
+		if hole.six:
+			sixth.append(hole.six)
+		if hole.seven:
+			seventh.append(hole.seven)
+		if hole.eight:
+			eighth.append(hole.eight)
+		if hole.nine:
+			ninth.append(hole.nine)
 
 	context = {
 		'all_rounds': all_rounds,
@@ -128,16 +84,16 @@ def home(request):
 		'total_bogies': total_bogies,
 		'total_doubles': total_doubles,
 		'total_trips_and_above': total_trips_and_above,
-		'one_avg': round(one_avg, 3),
-		'two_avg': round(two_avg, 3),
-		'three_avg': round(three_avg, 3),
-		'four_avg': round(four_avg, 3),
-		'five_avg': round(five_avg, 3),
-		'six_avg': round(six_avg, 3),
-		'seven_avg': round(seven_avg, 3),
-		'eight_avg': round(eight_avg, 3),
-		'nine_avg': round(nine_avg, 3),
-		'total_holes': round(total_holes, 3),
+		'one_avg': round(stat.mean(first), 3),
+		'two_avg': round(stat.mean(second), 3),
+		'three_avg': round(stat.mean(third), 3),
+		'four_avg': round(stat.mean(fourth), 3),
+		'five_avg': round(stat.mean(fifth), 3),
+		'six_avg': round(stat.mean(sixth), 3),
+		'seven_avg': round(stat.mean(seventh), 3),
+		'eight_avg': round(stat.mean(eighth), 3),
+		'nine_avg': round(stat.mean(ninth), 3),
+		'total_holes': (len(all_rounds) * 9)
 	}
 	return render(request, 'home.html', context)
 
@@ -248,6 +204,9 @@ def single_player(request, player_id):
 	nine_avg = sum(ninth) / float(len(ninth))
 
 	# player match record
+
+
+	
 
 
 	context = {
@@ -975,6 +934,7 @@ def all_player_stats(request):
 
 	# figure = Round.objects.filter(course__name='Hyland Hills South')
 	# one = figure.annotate(mean_one=Avg('one'))
+
 
 
 
